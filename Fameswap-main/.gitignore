@@ -1,0 +1,8 @@
+# Ignore configuration files containing sensitive information
+config.js
+
+# Ignore IDE and OS-specific files
+.vscode/
+
+# Ignore dependency directories
+/node_modules

