@@ -1,5 +1,6 @@
 # Ignore configuration files containing sensitive information
 config.js
+.env.local
 
 # Ignore IDE and OS-specific files
 .vscode/
