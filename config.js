@@ -1,0 +1,4 @@
+window.SUPABASE_CONFIG = {
+  URL: "https://kzwikuxlbyhfrwxsvwpj.supabase.co",
+  ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imt6d2lrdXhsYnloZnJ3eHN2d3BqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5OTgxMjAsImV4cCI6MjA2OTU3NDEyMH0.vulcEB0SjFMmy5Bcz3HdBvMW55-e5LIPjkmtTHr7pW0"
+};
